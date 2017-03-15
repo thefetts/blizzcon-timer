@@ -2,12 +2,13 @@ const Discord = require('discord.js');
 const moment = require('moment-timezone');
 const bot = new Discord.Client();
 
-const ticketsOnSale = moment.tz('2017-04-19 19:00', 'America/Los_Angeles').tz('America/Denver');
+const ticketsOnSale = moment.tz('2017-04-05 19:00', 'America/Los_Angeles').tz('America/Denver');
+const ticketsOnSale2 = moment.tz('2017-04-08 10:00', 'America/Los_Angeles').tz('America/Denver');
 const blizzConStart = moment.tz('2017-11-03 08:00', 'America/Los_Angeles').tz('America/Denver');
 
 function timeUntil() {
-  return `Time until BlizzCon tickets go on sale (maybe): **${timeUntilDate(ticketsOnSale)}**\n` +
-    `Time until BlizzCon starts (maybe): **${timeUntilDate(blizzConStart)}**`;
+  return `Time until BlizzCon tickets go on sale: **${timeUntilDate(ticketsOnSale)}**\n` +
+    `Time until BlizzCon starts: **${timeUntilDate(blizzConStart)}**`;
 }
 
 function timeUntilDate(date) {
@@ -20,11 +21,12 @@ function formatDuration(duration) {
 }
 
 function info() {
-  return `Based on 2016 dates, I'm currently assuming tickets will go on sale:\n` +
+  return `Confirmed by Blizzard, tickets first go on sale:\n` +
     `  **${formatDate(ticketsOnSale)}**\n\n` +
-    `And assuming the convention starts:\n` +
-    `  **${formatDate(blizzConStart)}**\n\n` +
-    `If this information is outdated, please let Jordan know!`;
+    `There is a second round on sale at:\n` +
+    `  **${formatDate(ticketsOnSale2)}**\n\n` +
+    `The convention itself starts at:\n` +
+    `  **${formatDate(blizzConStart)}**`;
 }
 
 function formatDate(date) {
@@ -32,9 +34,9 @@ function formatDate(date) {
 }
 
 bot.on('message', msg => {
-  if (msg.content.startsWith('!blizzcon info')) {
+  if (msg.content.toLowerCase().startsWith('!blizzcon info')) {
     msg.channel.sendMessage(info());
-  } else if (msg.content.startsWith('!blizzcon')) {
+  } else if (msg.content.toLowerCase().startsWith('!blizzcon')) {
     msg.channel.sendMessage(timeUntil());
   }
 });
