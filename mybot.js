@@ -7,8 +7,7 @@ const ticketsOnSale2 = moment.tz('2017-04-08 10:00', 'America/Los_Angeles').tz('
 const blizzConStart = moment.tz('2017-11-03 08:00', 'America/Los_Angeles').tz('America/Denver');
 
 function timeUntil() {
-  return `Time until BlizzCon tickets go on sale: **${timeUntilDate(ticketsOnSale)}**\n` +
-    `Time until BlizzCon starts: **${timeUntilDate(blizzConStart)}**`;
+  return `Time until BlizzCon starts: **${timeUntilDate(blizzConStart)}**`;
 }
 
 function timeUntilDate(date) {
@@ -21,10 +20,8 @@ function formatDuration(duration) {
 }
 
 function info() {
-  return `Confirmed by Blizzard, tickets first go on sale:\n` +
-    `  **${formatDate(ticketsOnSale)}**\n\n` +
-    `There is a second round on sale at:\n` +
-    `  **${formatDate(ticketsOnSale2)}**\n\n` +
+  return `Tickets sold out, we managed to get FOUR.\n` +
+    `Keep an eye out on Craigslist, eBay and lfblizzcon.com and let us know if you find decent prices!\n\n` +
     `The convention itself starts at:\n` +
     `  **${formatDate(blizzConStart)}**`;
 }
